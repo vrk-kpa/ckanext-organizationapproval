@@ -1,3 +1,4 @@
+// TODO: not used yet. WIP
 ckan.module('deny-organization', function(jQuery) {
   return {
     /* An object of module options */
