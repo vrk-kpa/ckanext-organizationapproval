@@ -39,7 +39,7 @@ def send_new_organization_email_to_admin():
 
     send_email(
         'admin',
-        config['ckan.emails.admin'],
+        config['ckanext.organizationapproval.admin_email'],
         email['subject'],
         email['message']
     )
