@@ -36,7 +36,11 @@
 
             <div class="row-fluid">
               {% set locale_delete = h.dump_json({'content': _('Are you sure you want to permanently delete this organization?')}) %}
-              {% set locale_deny = h.dump_json({'content': _('Why is this organization denied? The following text will be sent to the organization maintainer:')}) %}
+              {% set locale_deny = h.dump_json({
+                  'content': _('Why is this organization denied? The following text will be sent to the organization maintainer:'),
+                  'placeholder': _('eg. Organization description not allowed')
+                })
+              %}
                 <form id="organization-approval-form" data-organization="{{ organization.id }}" method="post">
                   {% if organization.approval_status != 'approved' %}
                     <input class="hidden" name="org_id" value="{{ organization.id }}" />

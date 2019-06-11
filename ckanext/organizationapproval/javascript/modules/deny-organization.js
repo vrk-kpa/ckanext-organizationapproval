@@ -14,6 +14,7 @@ ckan.module('deny-organization', function(jQuery) {
              *    </a>
              */
             content: '',
+            placeholder: '',
 
             /* This is part of the old i18n system and is kept for backwards-
              * compatibility for templates which set the content via the
@@ -22,6 +23,7 @@ ckan.module('deny-organization', function(jQuery) {
              */
             i18n: {
                 content: '',
+                placeholder: '',
             },
 
             template: `
@@ -133,6 +135,8 @@ ckan.module('deny-organization', function(jQuery) {
                     this.options.i18n.content /* Backwards-compatibility */ ||
                     this._('Are you sure you want to perform this action?');
                 element.find('.modal-body').text(content);
+                element.find('#deny-organization-reason')
+                    .attr('placeholder', this.options.placeholder || this.options.i18n.placeholder);
                 element.find('.btn-primary').text(this._('Confirm'));
                 element.find('.btn-cancel').text(this._('Cancel'));
             }
