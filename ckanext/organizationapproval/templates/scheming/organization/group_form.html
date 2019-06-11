@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+<!-- NOTE: Is this a hack if it is inside the delete_button block? Should it be defined in some other place? -->
+{% block delete_button %}
+    {{ super() }}
+    {% if action == 'edit' %}
+        {% set status = data.get('approval_status') %}
+        {% if status == 'denied' %}
+            <!-- Only show button if organization status is denied -->
+            <button class="btn btn-info mt-2" name="save" type="submit" value="approve">
+                {{_('Save and request reapproval')}}
+            </button>
+        {% endif %}
+    {% endif %}
+{% endblock %}
