@@ -6,15 +6,17 @@
 # 
 # Translators:
 # Aaron Hakala <aaron.hakala@gofore.com>, 2019
+# Meeri Hakala <meeri.hakala@vrk.fi>, 2019
+# Jonna Jantunen <jonna.jantunen@vrk.fi>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-organizationapproval 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-11 13:28+0000\n"
+"POT-Creation-Date: 2019-06-11 14:22+0000\n"
 "PO-Revision-Date: 2019-05-22 09:48+0000\n"
-"Last-Translator: Aaron Hakala <aaron.hakala@gofore.com>, 2019\n"
+"Last-Translator: Jonna Jantunen <jonna.jantunen@vrk.fi>, 2019\n"
 "Language-Team: Finnish (https://www.transifex.com/avoindata/teams/7979/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +44,11 @@ msgstr "Status ei sallittu"
 
 #: ckanext/organizationapproval/logic.py:81
 msgid "Succesfully sent email notification"
-msgstr ""
+msgstr "Sähköposti-ilmoitus lähetettiin onnistuneesti"
 
 #: ckanext/organizationapproval/logic.py:84
 msgid "Failed to send email notification"
-msgstr ""
+msgstr "Sähköposti-ilmoituksen lähetys epäonnistui"
 
 #: ckanext/organizationapproval/templates/admin/manage_organizations.html:10
 msgid "Manage Organizations"
@@ -56,42 +58,50 @@ msgstr "Hallinnoi organisaatioita"
 msgid "Are you sure you want to permanently delete this organization?"
 msgstr "Haluatko varmasti poistaa organisaation pysyvästi?"
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:39
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:40
 msgid ""
 "Why is this organization denied? The following text will be sent to the "
 "organization maintainer:"
 msgstr ""
+"Miksi tämä organisaatio hylätään? Kirjoita alle hylkäämisen syy "
+"organisaation ylläpitäjälle:"
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:46
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:41
+msgid "eg. Organization description not allowed"
+msgstr ""
+
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:50
 msgid "Approve"
 msgstr "Hyväksy"
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:57
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:61
 msgid "Deny"
 msgstr "Hylkää"
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:64
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:68
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:69
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:73
 msgid "Remove"
 msgstr "Poista"
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:133
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:137
 msgid " You can approve and delete organizations "
 msgstr "Voit hyväksyä ja poistaa organisaatioita"
 
 #: ckanext/organizationapproval/templates/organization/read_base.html:11
 msgid "Organization is pending approval"
-msgstr ""
+msgstr "Organisaatiosi odottaa hyväksyntää"
 
 #: ckanext/organizationapproval/templates/organization/read_base.html:16
 msgid ""
 "Organization has been denied, edit organizations details and request "
 "reapproval"
 msgstr ""
+"Organisaatiosi hylättiin. Muokkaa organsaation tietoja ja pyydä hyväksyntää "
+"uudelleen."
 
 #: ckanext/organizationapproval/templates/scheming/organization/group_form.html:11
 msgid "Save and request reapproval"
-msgstr ""
+msgstr "Tallenna ja lähetä uudelleenarvioitavaksi"
