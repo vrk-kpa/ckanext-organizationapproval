@@ -9,7 +9,7 @@ from ckan.lib.base import abort, render
 from ckan.logic import get_action, NotAuthorized, check_access
 import ckan.lib.navl.dictization_functions as dictization_functions
 
-from logic import send_organization_approved
+from logic import send_organization_approved, send_organization_denied
 
 log = logging.getLogger(__name__)
 unflatten = dictization_functions.unflatten
@@ -43,6 +43,9 @@ class OrganizationApprovalController(OrganizationController):
                     get_action('organization_update')(data_dict=organization)
                     if status == 'approved':
                         send_organization_approved(organization)
+                    elif status == 'denied':
+                        reason = request.params['deny-reason']
+                        send_organization_denied(organization, reason)
                     h.flash_success(_("Organization was successfully updated"))
                 else:
                     h.flash_error(_("Status is already set to '%s'") % status)
@@ -72,3 +75,15 @@ class OrganizationApprovalController(OrganizationController):
             'current_page': page_num,
             'total_pages': total_pages,
         })
+
+    def reapprove(self, id, data=None, errors=None, error_summary=None):
+        context = {'model': model, 'session': model.Session, 'user': c.user or c.author}
+        if (
+            request.method == 'POST' and request.params['save'] == 'approve' and
+            check_access('organization_update', context, {'id': id})
+        ):
+            # update approval status to pending for organization
+            get_action('organization_patch')(data_dict={'id': id, 'approval_status': 'pending'})
+            # NOTE: maybe send message to admin about reapproval?
+
+        return self.edit(id, data, errors, error_summary)

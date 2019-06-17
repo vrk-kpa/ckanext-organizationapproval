@@ -14,7 +14,9 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
+        toolkit.add_public_directory(config_, 'public')
         toolkit.add_ckan_admin_tab(config_, 'manage_organizations', 'Manage organizations')
+        toolkit.add_resource('javascript', 'ckanext-organizationapproval_js')
 
     # IRoutes
     def before_map(self, map):
@@ -25,6 +27,11 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
                     controller=organization_controller,
                     action='manage_organizations',
                     ckan_icon='picture')
+
+        map.connect('ask_reapproval',
+                    '/organization/edit/{id}',
+                    controller=organization_controller,
+                    action='reapprove')
 
         return map
 

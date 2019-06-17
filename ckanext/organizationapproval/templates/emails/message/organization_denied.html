@@ -1,0 +1,77 @@
+<html>
+    <style>
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .main-text {
+            line-height: 1.5em;
+            margin-bottom: 2em;
+        }
+        .signature p {
+            line-height: 0.4em;
+        }
+        hr {
+            margin: 2em 0;
+        }
+        .reason {
+            padding: 0 1.5em 0.5em;
+            border: 1px solid #aaa;
+            max-width: 500px;
+            width: max-content;
+            margin-bottom: 2em;
+        }
+        .content {
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .denied {
+            color: red;
+            font-weight: 700;
+        }
+    </style>
+    <body>
+        <div class="content">
+            <h1>Hei</h1>
+            <p class="main-text">
+                Olet luonut Avoindata.fi-palveluun uuden organisaation. Olemme
+                tarkastaneet ja päättäneet <span class="denied">hylätä</span> sen.
+            </p>
+            <div class="reason">
+                <h4>Hylkäämisen syy:</h4>
+                <p>{{ reason }}</p>
+            </div>
+            <p>
+                Jos päivität organisaation tietoja voit pyytää sitä uudelleen
+                tarkastettavaksi. Ohjeita löydät palvelun
+                <a href="{{ url_guide }}">käyttöohjeista</a>. Voit tutustua myös
+                <a href="{{ url_user_guide }}">datan avaajan oppaaseemme</a>!
+            </p>
+            <div class="signature">
+                <p>Terveisin,</p>
+                <p>Avoindata.fi</p>
+            </div>
+            <hr />
+            <h1>Hello</h1>
+            <p class="main-text">
+                You have requested a new organization to be added in the Finnish
+                open data portal Avoindata.fi. Your organization has been reviewed
+                and <span class="denied">denied</span>.
+            </p>
+            <div class="reason">
+                <h4>Denial reason:</h4>
+                <p>{{ reason }}</p>
+            </div>
+            <p>
+                If you update the organizations you can request approval again.
+                You'll find further instructions in our
+                <a href="{{ url_guide }}">user's guide</a>. You may also want to
+                check out our
+                <a href="{{ url_user_guide }}">data publisher's guide</a>!
+            </p>
+            <div class="signature">
+                <p>With best regards,</p>
+                <p>Avoindata.fi</p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-organizationapproval 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-22 09:45+0000\n"
+"POT-Creation-Date: 2019-06-17 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,68 +18,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/organizationapproval/controller.py:32
+#: ckanext/organizationapproval/controller.py:31
 msgid "User not authorized to view page"
 msgstr ""
 
-#: ckanext/organizationapproval/controller.py:47
+#: ckanext/organizationapproval/controller.py:49
 msgid "Organization was successfully updated"
 msgstr ""
 
-#: ckanext/organizationapproval/controller.py:49
+#: ckanext/organizationapproval/controller.py:51
 #, python-format
 msgid "Status is already set to '%s'"
 msgstr ""
 
-#: ckanext/organizationapproval/controller.py:51
+#: ckanext/organizationapproval/controller.py:53
 msgid "Status not allowed"
 msgstr ""
 
-#: ckanext/organizationapproval/javascript/modules/deny-organization.js:114
-msgid "Please Confirm Action"
+#: ckanext/organizationapproval/logic.py:81
+msgid "Successfully sent email notification"
 msgstr ""
 
-#: ckanext/organizationapproval/javascript/modules/deny-organization.js:118
-msgid "Are you sure you want to perform this action?"
+#: ckanext/organizationapproval/logic.py:84
+msgid "Failed to send email notification"
 msgstr ""
 
-#: ckanext/organizationapproval/javascript/modules/deny-organization.js:120
-msgid "Confirm"
-msgstr ""
-
-#: ckanext/organizationapproval/javascript/modules/deny-organization.js:121
-msgid "Cancel"
-msgstr ""
-
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:11
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:10
 msgid "Manage Organizations"
 msgstr ""
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:39
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:38
 msgid "Are you sure you want to permanently delete this organization?"
 msgstr ""
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:45
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:40
+msgid ""
+"Why is this organization denied? The following text will be sent to the "
+"organization maintainer:"
+msgstr ""
+
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:41
+msgid "eg. Organization description not allowed"
+msgstr ""
+
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:50
 msgid "Approve"
 msgstr ""
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:55
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:61
 msgid "Deny"
 msgstr ""
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:63
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:68
 msgid "Edit"
 msgstr ""
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:68
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:73
 msgid "Remove"
 msgstr ""
 
-#: ckanext/organizationapproval/templates/admin/manage_organizations.html:128
+#: ckanext/organizationapproval/templates/admin/manage_organizations.html:137
 msgid " You can approve and delete organizations "
 msgstr ""
 
-#: ckanext/organizationapproval/templates/organization/edit_base.html:6
-msgid "Close without saving"
+#: ckanext/organizationapproval/templates/organization/read_base.html:11
+msgid "Organization is pending approval"
+msgstr ""
+
+#: ckanext/organizationapproval/templates/organization/read_base.html:16
+msgid ""
+"Organization has been denied, edit organization's details and request "
+"reapproval"
+msgstr ""
+
+#: ckanext/organizationapproval/templates/scheming/organization/group_form.html:11
+msgid "Save and request reapproval"
 msgstr ""
 

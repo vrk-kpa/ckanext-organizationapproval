@@ -42,7 +42,7 @@ msgid "Status not allowed"
 msgstr ""
 
 #: ckanext/organizationapproval/logic.py:81
-msgid "Succesfully sent email notification"
+msgid "Successfully sent email notification"
 msgstr ""
 
 #: ckanext/organizationapproval/logic.py:84
@@ -95,7 +95,7 @@ msgstr "Organisation is pending approval"
 
 #: ckanext/organizationapproval/templates/organization/read_base.html:16
 msgid ""
-"Organization has been denied, edit organizations details and request "
+"Organization has been denied, edit organization's details and request "
 "reapproval"
 msgstr ""
 "Your organisation has been denied. Edit organisation's details and request "

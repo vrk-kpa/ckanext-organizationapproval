@@ -5,6 +5,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
 # 
 # Translators:
+# Jonna Jantunen <jonna.jantunen@vrk.fi>, 2019
 # Aaron Hakala <aaron.hakala@gofore.com>, 2019
 # Jonna Jantunen <jonna.jantunen@vrk.fi>, 2019
 # 
@@ -42,7 +43,7 @@ msgid "Status not allowed"
 msgstr "Status ei sallittu"
 
 #: ckanext/organizationapproval/logic.py:81
-msgid "Succesfully sent email notification"
+msgid "Successfully sent email notification"
 msgstr "Sähköposti-ilmoitus lähetettiin onnistuneesti"
 
 #: ckanext/organizationapproval/logic.py:84
@@ -67,7 +68,7 @@ msgstr ""
 
 #: ckanext/organizationapproval/templates/admin/manage_organizations.html:41
 msgid "eg. Organization description not allowed"
-msgstr ""
+msgstr "esim. Organisaation kuvaus ei sallittu"
 
 #: ckanext/organizationapproval/templates/admin/manage_organizations.html:50
 msgid "Approve"
@@ -95,7 +96,7 @@ msgstr "Organisaatio odottaa hyväksyntää"
 
 #: ckanext/organizationapproval/templates/organization/read_base.html:16
 msgid ""
-"Organization has been denied, edit organizations details and request "
+"Organization has been denied, edit organization's details and request "
 "reapproval"
 msgstr ""
 "Organisaatiosi hylättiin. Muokkaa organsaation tietoja ja pyydä hyväksyntää "

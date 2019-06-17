@@ -1,0 +1,20 @@
+{% ckan_extends %}
+
+{% block pre_primary %}
+  <!--
+    NOTE: styles are currently coming from ytp-assets-common
+    and if this is separate plugin in the future some styling should be added
+  -->
+  {% set status = c.group_dict.approval_status %}
+  {% if status == 'pending' %}
+    <div class="status_notice status_notice_pending alert-info p-2 mt-3">
+      {{ _('Organization is pending approval') }}
+    </div>
+  {% endif %}
+  {% if status == 'denied' %}
+    <div class="status_notice status_notice_denied alert-danger p-2 mt-3">
+      {{ _('Organization has been denied, edit organization\'s details and request reapproval') }}
+    </div>
+  {% endif %}
+  {{super()}}
+{% endblock %}
