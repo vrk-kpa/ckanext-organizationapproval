@@ -78,7 +78,7 @@ def send_email(name, email, subject, message):
             message,
             {'Content-Type': 'text/html; charset=UTF-8'}
         )
-        h.flash_success(_("Succesfully sent email notification"))
+        h.flash_success(_("Successfully sent email notification"))
     except MailerException as e:
         # NOTE: MailerException happens in cypress.
         h.flash_error(_("Failed to send email notification"))

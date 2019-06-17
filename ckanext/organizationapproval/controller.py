@@ -43,7 +43,7 @@ class OrganizationApprovalController(OrganizationController):
                     get_action('organization_update')(data_dict=organization)
                     if status == 'approved':
                         send_organization_approved(organization)
-                    if status == 'denied':
+                    elif status == 'denied':
                         reason = request.params['deny-reason']
                         send_organization_denied(organization, reason)
                     h.flash_success(_("Organization was successfully updated"))
