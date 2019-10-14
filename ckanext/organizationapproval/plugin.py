@@ -3,6 +3,7 @@ import os
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from helpers import make_pager_url
+import auth
 
 
 class OrganizationApprovalPlugin(plugins.SingletonPlugin):
@@ -10,6 +11,7 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.ITranslation)
+    plugins.implements(plugins.IAuthFunctions)
 
     # IConfigurer
     def update_config(self, config_):
@@ -71,3 +73,6 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
         ckanext-{extension name}, hence your pot, po and mo files should be
         named ckanext-{extension name}.mo'''
         return 'ckanext-{name}'.format(name=self.name)
+
+    def get_auth_functions(self):
+        return {'package_create': auth.package_create}
