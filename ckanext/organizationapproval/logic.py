@@ -120,8 +120,6 @@ def organization_list(original_action, context, data_dict):
         memberships = set(result[0] for result in query.all())
         non_approved -= memberships
 
-    log.info(non_approved)
-
     # Filter the result list to exclude non-approved organizations the user is not a member of
     if isinstance(org_list[0], dict):
         return [o for o in org_list if o.get('name') not in non_approved]
