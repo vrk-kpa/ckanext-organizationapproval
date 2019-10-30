@@ -12,6 +12,7 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.IActions)
 
     # IConfigurer
     def update_config(self, config_):
@@ -76,3 +77,11 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
 
     def get_auth_functions(self):
         return {'package_create': auth.package_create}
+
+    # IActions
+
+    def get_actions(self):
+        from logic import organization_list
+        return {
+            "organization_list": organization_list
+        }
