@@ -5,6 +5,8 @@ import ckan.lib.helpers as h
 from ckan.lib.mailer import mail_recipient, MailerException
 from ckan.logic import get_action
 from ckan.lib.base import render_jinja2
+from ckan.authz import is_sysadmin
+import ckan.plugins.toolkit as toolkit
 
 log = logging.getLogger(__name__)
 
@@ -83,3 +85,45 @@ def send_email(name, email, subject, message):
         # NOTE: MailerException happens in cypress.
         h.flash_error(_("Failed to send email notification"))
         log.error('Error sending email: %s', e)
+
+
+# May cause issues for unpatched CKANs, see https://github.com/ckan/ckan/issues/4597
+@toolkit.chained_action
+@toolkit.side_effect_free
+def organization_list(original_action, context, data_dict):
+    org_list = original_action(context, data_dict)
+
+    model = context['model']
+    user = context.get('user')
+
+    # Early return for trivial cases and sysadmins
+    if len(org_list) == 0 or (user and is_sysadmin(user)):
+        return org_list
+
+    # Find names of all non-approved organizations
+    query = (model.Session.query(model.Group.name)
+             .filter(model.Group.state == u'active')
+             .filter(model.Group.approval_status != u'approved'))
+
+    non_approved = set(result[0] for result in query.all())
+
+    # If user is logged in, retain only names of organizations the user is not a member of
+    if user:
+        query = (model.Session.query(model.Group.name)
+                 .join(model.Member, model.Member.group_id == model.Group.id)
+                 .join(model.User, model.User.id == model.Member.table_id)
+                 .filter(model.Member.state == u'active')
+                 .filter(model.Member.table_name == u'user')
+                 .filter(model.User.name == user)
+                 .filter(model.Group.state == u'active')
+                 .filter(model.Group.approval_status != u'approved'))
+        memberships = set(result[0] for result in query.all())
+        non_approved -= memberships
+
+    log.info(non_approved)
+
+    # Filter the result list to exclude non-approved organizations the user is not a member of
+    if isinstance(org_list[0], dict):
+        return [o for o in org_list if o.get('name') not in non_approved]
+    else:
+        return [o for o in org_list if o not in non_approved]
