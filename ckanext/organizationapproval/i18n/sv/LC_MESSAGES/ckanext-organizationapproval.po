@@ -3,8 +3,8 @@
 # This file is distributed under the same license as the
 # ckanext-organizationapproval project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
-# 
-#, fuzzy
+#
+# , fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-organizationapproval 0.0.1\n"
@@ -18,31 +18,32 @@ msgstr ""
 "Generated-By: Babel 2.3.4\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
 
 #: ckanext/organizationapproval/controller.py:31
 msgid "User not authorized to view page"
-msgstr ""
+msgstr "Användaren saknar behörighet att granska denna sida"
 
 #: ckanext/organizationapproval/controller.py:49
 msgid "Organization was successfully updated"
-msgstr ""
+msgstr "Organisationen har uppdaterats"
 
 #: ckanext/organizationapproval/controller.py:51
 #, python-format
 msgid "Status is already set to '%s'"
-msgstr ""
+msgstr "Statusen är redan satt till '%s'"
 
 #: ckanext/organizationapproval/controller.py:53
 msgid "Status not allowed"
-msgstr ""
+msgstr "Otillåten status"
 
 #: ckanext/organizationapproval/logic.py:81
 msgid "Successfully sent email notification"
-msgstr ""
+msgstr "E-postmeddelandet har skickats"
 
 #: ckanext/organizationapproval/logic.py:84
 msgid "Failed to send email notification"
-msgstr ""
+msgstr "Sändning av e-postmeddelandet misslyckades"
 
 #: ckanext/organizationapproval/templates/admin/manage_organizations.html:10
 msgid "Manage Organizations"
@@ -53,9 +54,7 @@ msgid "Are you sure you want to permanently delete this organization?"
 msgstr ""
 
 #: ckanext/organizationapproval/templates/admin/manage_organizations.html:40
-msgid ""
-"Why is this organization denied? The following text will be sent to the "
-"organization maintainer:"
+msgid "Why is this organization denied? The following text will be sent to the organization maintainer:"
 msgstr ""
 
 #: ckanext/organizationapproval/templates/admin/manage_organizations.html:41
@@ -84,14 +83,13 @@ msgstr ""
 
 #: ckanext/organizationapproval/templates/organization/read_base.html:11
 msgid "Organization is pending approval"
-msgstr ""
+msgstr "Organisationen inväntar godkännande"
 
 #: ckanext/organizationapproval/templates/organization/read_base.html:16
-msgid ""
-"Organization has been denied, edit organization's details and request "
-"reapproval"
-msgstr ""
+msgid "Organization has been denied, edit organization's details and request reapproval"
+msgstr "Din organisation blev inte godkänd. Redigera uppgifterna om organisationen och begär godkännande på nytt."
 
 #: ckanext/organizationapproval/templates/scheming/organization/group_form.html:11
 msgid "Save and request reapproval"
-msgstr ""
+msgstr "Spara och begär godkännande på nytt"
+
