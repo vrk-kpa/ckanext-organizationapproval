@@ -45,7 +45,7 @@ class OrganizationApprovalController(OrganizationController):
                                                                           'include_followers': False})
                 if organization['approval_status'] != status:
                     organization['approval_status'] = status
-                    get_action('organization_update')(data_dict=organization)
+                    get_action('organization_patch')(data_dict=organization)
                     if status == 'approved':
                         send_organization_approved(organization)
                     elif status == 'denied':

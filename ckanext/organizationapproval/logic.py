@@ -15,7 +15,8 @@ def get_user_from_organization(organization):
     from ckan import model
     context = {'model': model, 'ignore_auth': True, 'session': model.Session}
 
-    user_id = organization['users'][0]['id']
+    admin_list = get_action('member_list')(context, {'id': organization['id'], 'object_type': 'user', 'capacity': 'admin'})
+    user_id = admin_list[0][0]
     return get_action('user_show')(context, data_dict={"id": user_id})
 
 
