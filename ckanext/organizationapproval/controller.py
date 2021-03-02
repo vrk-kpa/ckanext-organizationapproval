@@ -37,7 +37,12 @@ class OrganizationApprovalController(OrganizationController):
             # NOTE: should the possible statuses come from somewhere else?
             possible_statuses = ['approved', 'pending', 'denied']
             if status in possible_statuses:
-                organization = get_action('organization_show')(data_dict={'id': org_id})
+                organization = get_action('organization_show')(data_dict={'id': org_id,
+                                                                          'include_users': False,
+                                                                          'include_dataset_count': False,
+                                                                          'include_groups': False,
+                                                                          'include_tags': False,
+                                                                          'include_followers': False})
                 if organization['approval_status'] != status:
                     organization['approval_status'] = status
                     get_action('organization_update')(data_dict=organization)
