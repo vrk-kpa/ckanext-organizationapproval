@@ -2,8 +2,8 @@ import sys
 import os
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-from helpers import make_pager_url
-import auth
+from .helpers import make_pager_url
+from . import auth
 
 
 class OrganizationApprovalPlugin(plugins.SingletonPlugin):
@@ -81,7 +81,7 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
     # IActions
 
     def get_actions(self):
-        from logic import organization_list
+        from .logic import organization_list
         return {
             "organization_list": organization_list
         }
