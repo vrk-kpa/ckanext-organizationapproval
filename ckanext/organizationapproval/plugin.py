@@ -3,22 +3,22 @@ import os
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from .helpers import make_pager_url
-from . import auth
+from . import auth, views
 
 
 class OrganizationApprovalPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
-    plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IBlueprint)
 
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_ckan_admin_tab(config_, 'manage_organizations', 'Manage organizations')
+        toolkit.add_ckan_admin_tab(config_, 'organizationapproval.manage_organizations', 'Manage organizations')
         toolkit.add_resource('javascript', 'ckanext-organizationapproval_js')
 
     # IRoutes
@@ -85,3 +85,8 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
         return {
             "organization_list": organization_list
         }
+
+    # IBlueprint
+
+    def get_blueprint(self):
+        return views.get_blueprint()
