@@ -83,16 +83,17 @@ def manage_organizations():
     })
 
 
-if False:
-    @organizationapproval.route('/organization/edit/{id}', methods=['GET', 'POST'])
-    def ask_reapproval(id, data=None, errors=None, error_summary=None):
-        context = {'model': model, 'session': model.Session, 'user': toolkit.c.user or toolkit.c.author}
-        if (
-            request.method == 'POST' and request.form['save'] == 'approve' and
-            toolkit.check_access('organization_update', context, {'id': id})
-        ):
-            # update approval status to pending for organization
-            toolkit.get_action('organization_patch')(data_dict={'id': id, 'approval_status': 'pending'})
-            # NOTE: maybe send message to admin about reapproval?
+# FIXME: Disabled, pending AV-1548
+# @organizationapproval.route('/organization/edit/{id}', methods=['GET', 'POST'])
+def ask_reapproval(id, data=None, errors=None, error_summary=None):
+    context = {'model': model, 'session': model.Session, 'user': toolkit.c.user or toolkit.c.author}
+    if (
+        request.method == 'POST' and request.form['save'] == 'approve' and
+        toolkit.check_access('organization_update', context, {'id': id})
+    ):
+        # update approval status to pending for organization
+        toolkit.get_action('organization_patch')(data_dict={'id': id, 'approval_status': 'pending'})
+        # NOTE: maybe send message to admin about reapproval?
 
-        return self.edit(id, data, errors, error_summary)
+    # FIXME: Original implementation called "original" edit route. This is not practical in Flask.
+    # return self.edit(id, data, errors, error_summary)
