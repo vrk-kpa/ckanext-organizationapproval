@@ -9,7 +9,7 @@ from ckan.lib.base import abort, render
 from ckan.logic import get_action, NotAuthorized, check_access
 import ckan.lib.navl.dictization_functions as dictization_functions
 
-from logic import send_organization_approved, send_organization_denied
+from .logic import send_organization_approved, send_organization_denied
 
 log = logging.getLogger(__name__)
 unflatten = dictization_functions.unflatten

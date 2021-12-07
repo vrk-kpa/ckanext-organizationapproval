@@ -1,5 +1,4 @@
 import logging
-from pylons import config
 from ckan.common import _
 import ckan.lib.helpers as h
 from ckan.lib.mailer import mail_recipient, MailerException
@@ -22,7 +21,7 @@ def get_user_from_organization(organization):
 
 def send_organization_approved(organization):
     user_details = get_user_from_organization(organization)
-    site_addr = config['ckan.site_url']
+    site_addr = toolkit.config['ckan.site_url']
     email = make_email_template('organization_approved', {
       "url_guide": site_addr + '/opas/avoimen-datan-opas',
       "url_user_guide": site_addr + '/opas/johdanto'
@@ -37,7 +36,7 @@ def send_organization_approved(organization):
 
 def send_organization_denied(organization, reason):
     user_details = get_user_from_organization(organization)
-    site_addr = config['ckan.site_url']
+    site_addr = toolkit.config['ckan.site_url']
     email = make_email_template('organization_denied', {
       "reason": reason,
       "url_guide": site_addr + '/opas/avoimen-datan-opas',
@@ -52,7 +51,7 @@ def send_organization_denied(organization, reason):
 
 
 def send_new_organization_email_to_admin():
-    site_addr = config['ckan.site_url']
+    site_addr = toolkit.config['ckan.site_url']
 
     email = make_email_template('admin_new_organization', {
       "ckan_admin_url": site_addr + '/data/ckan-admin/organization_management',
@@ -60,7 +59,7 @@ def send_new_organization_email_to_admin():
 
     send_email(
         'admin',
-        config['ckanext.organizationapproval.admin_email'],
+        toolkit.config['ckanext.organizationapproval.admin_email'],
         email['subject'],
         email['message']
     )
@@ -103,8 +102,8 @@ def organization_list(original_action, context, data_dict):
 
     # Find names of all non-approved organizations
     query = (model.Session.query(model.Group.name)
-             .filter(model.Group.state == u'active')
-             .filter(model.Group.approval_status != u'approved'))
+             .filter(model.Group.state == 'active')
+             .filter(model.Group.approval_status != 'approved'))
 
     non_approved = set(result[0] for result in query.all())
 
@@ -113,11 +112,11 @@ def organization_list(original_action, context, data_dict):
         query = (model.Session.query(model.Group.name)
                  .join(model.Member, model.Member.group_id == model.Group.id)
                  .join(model.User, model.User.id == model.Member.table_id)
-                 .filter(model.Member.state == u'active')
-                 .filter(model.Member.table_name == u'user')
+                 .filter(model.Member.state == 'active')
+                 .filter(model.Member.table_name == 'user')
                  .filter(model.User.name == user)
-                 .filter(model.Group.state == u'active')
-                 .filter(model.Group.approval_status != u'approved'))
+                 .filter(model.Group.state == 'active')
+                 .filter(model.Group.approval_status != 'approved'))
         memberships = set(result[0] for result in query.all())
         non_approved -= memberships
 
