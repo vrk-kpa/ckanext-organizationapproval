@@ -3,7 +3,6 @@ from ckan.common import _
 import ckan.lib.helpers as h
 from ckan.lib.mailer import mail_recipient, MailerException
 from ckan.logic import get_action
-from ckan.lib.base import render_jinja2
 from ckan.authz import is_sysadmin
 import ckan.plugins.toolkit as toolkit
 
@@ -66,19 +65,20 @@ def send_new_organization_email_to_admin():
 
 
 def make_email_template(template, extra_vars):
-    message = render_jinja2('emails/message/{0}.html'.format(template), extra_vars)
-    subject = render_jinja2('emails/subject/{0}.txt'.format(template), extra_vars)
+    message = toolkit.render('emails/message/{0}.html'.format(template), extra_vars)
+    subject = toolkit.render('emails/subject/{0}.txt'.format(template), extra_vars)
     return {'message': message, 'subject': subject}
 
 
 def send_email(name, email, subject, message):
+    log.debug('send_email(%s, %s, %s, %s)', name, email, subject, message)
     try:
         mail_recipient(
             name,
             email,
             subject,
             message,
-            {'Content-Type': 'text/html; charset=UTF-8'}
+            headers={'Content-Type': 'text/html; charset=UTF-8'}
         )
         h.flash_success(_("Successfully sent email notification"))
     except MailerException as e:
