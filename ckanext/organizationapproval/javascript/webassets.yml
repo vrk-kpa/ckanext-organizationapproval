@@ -1,0 +1,9 @@
+deny_organization_js:
+  output: ckanext-organizationapproval%(version)s_deny-organization.js
+  filters: rjsmin
+  extra:
+    preload:
+      - base/main
+  contents:
+    - modules/deny-organization.js
+
