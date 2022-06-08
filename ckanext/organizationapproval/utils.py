@@ -1,7 +1,8 @@
 from ckan.plugins import toolkit
 import itertools
 
-def organization_generator(context, options=None, page_size: int=None) -> list:
+
+def organization_generator(context, options=None, page_size: int = None) -> list:
     if options is None:
         options = {}
     if page_size is None:
