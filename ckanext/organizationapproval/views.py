@@ -4,6 +4,7 @@ from ckan import model
 from math import ceil
 import logging
 from .logic import send_organization_approved, send_organization_denied
+from .utils import organization_generator
 
 log = logging.getLogger(__name__)
 _ = toolkit._
@@ -61,7 +62,7 @@ def manage_organizations():
     # NOTE: This might cause slowness, get's all organizations and they are filtered later.
     # Organization list action doesn't support sorting by any field.
     # Maybe would be better to build a custom action for this case.
-    organization_list = toolkit.get_action('organization_list')(context, {"all_fields": True})
+    organization_list = list(organization_generator(context, {"all_fields": True}))
 
     page_num = 1
     per_page = 50.0
@@ -73,13 +74,14 @@ def manage_organizations():
         page_num = int(request.args['page'])
 
     # Return 20 most recently added organizations
-    toolkit.c.organization_data = sorted(organization_list, key=lambda x: x['created'], reverse=True)[
+    organization_data = sorted(organization_list, key=lambda x: (x['approval_status'], x['created']), reverse=True)[
         (int(per_page) * (page_num - 1)):(int(per_page) * page_num)
     ]
 
     return toolkit.render('admin/manage_organizations.html', extra_vars={
         'current_page': page_num,
         'total_pages': total_pages,
+        'organization_data': organization_data
     })
 
 
