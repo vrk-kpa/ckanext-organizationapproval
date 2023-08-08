@@ -26,7 +26,7 @@ def send_organization_approved(organization):
       "url_user_guide": site_addr + '/opas/johdanto'
     })
 
-    send_email(
+    send_email_with_admin_copy(
         user_details['name'],
         user_details['email'],
         email['subject'],
@@ -42,7 +42,7 @@ def send_organization_denied(organization, reason):
       "url_user_guide": site_addr + '/opas/johdanto'
     })
 
-    send_email(
+    send_email_with_admin_copy(
         user_details['name'],
         user_details['email'],
         email['subject'],
@@ -85,6 +85,15 @@ def send_email(name, email, subject, message):
         # NOTE: MailerException happens in cypress.
         h.flash_error(_("Failed to send email notification"))
         log.error('Error sending email: %s', e)
+
+
+def send_email_with_admin_copy(user_name, user_email, subject, message):
+    send_email(user_name, user_email, subject, message)
+
+    admin_email = toolkit.config.get('ckanext.organizationapproval.admin_email')
+    if admin_email:
+        send_email('Admin notifications', admin_email,
+                   f'(sent to {user_name}) {subject}', message)
 
 
 # May cause issues for unpatched CKANs, see https://github.com/ckan/ckan/issues/4597
