@@ -56,12 +56,9 @@ def send_new_organization_email_to_admin():
       "ckan_admin_url": site_addr + '/data/ckan-admin/organization_management',
     })
 
-    send_email(
-        'admin',
-        toolkit.config['ckanext.organizationapproval.admin_email'],
-        email['subject'],
-        email['message']
-    )
+    addresses = toolkit.aslist(toolkit.config['ckanext.organizationapproval.admin_email'])
+    for address in addresses:
+        send_email('admin', address, email['subject'], email['message'])
 
 
 def make_email_template(template, extra_vars):
@@ -90,9 +87,9 @@ def send_email(name, email, subject, message):
 def send_email_with_admin_copy(user_name, user_email, subject, message):
     send_email(user_name, user_email, subject, message)
 
-    admin_email = toolkit.config.get('ckanext.organizationapproval.admin_email')
-    if admin_email:
-        send_email('Admin notifications', admin_email,
+    admin_addresses = toolkit.aslist(toolkit.config['ckanext.organizationapproval.admin_email'])
+    for address in admin_addresses:
+        send_email('Admin notifications', address,
                    f'(sent to {user_name}) {subject}', message)
 
 
