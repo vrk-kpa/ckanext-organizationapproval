@@ -23,7 +23,6 @@ def send_organization_approved(organization):
     site_addr = toolkit.config['ckan.site_url']
     email = make_email_template('organization_approved', {
       "url_guide": site_addr + '/opas/avoimen-datan-opas',
-      "url_user_guide": site_addr + '/opas/johdanto'
     })
 
     send_email_with_admin_copy(
@@ -39,7 +38,6 @@ def send_organization_denied(organization, reason):
     email = make_email_template('organization_denied', {
       "reason": reason,
       "url_guide": site_addr + '/opas/avoimen-datan-opas',
-      "url_user_guide": site_addr + '/opas/johdanto'
     })
 
     send_email_with_admin_copy(
