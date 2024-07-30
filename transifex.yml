@@ -1,0 +1,9 @@
+git:
+  filters:
+    - filter_type: file
+      file_format: PO
+      source_language: en
+      source_file: 'ckanext/organizationapproval/i18n/ckanext-organizationapproval.pot'
+      translation_files_expression: 'ckanext/organizationapproval/i18n/<lang>/LC_MESSAGES/ckanext-organizationapproval.po'
+
+
