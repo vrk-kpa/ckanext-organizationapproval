@@ -5,8 +5,8 @@
     NOTE: styles are currently coming from ytp-assets-common
     and if this is separate plugin in the future some styling should be added
   -->
-  {% if h.check_access('organization_update', {'id': c.group_dict.id}) %}
-    {% set status = c.group_dict.approval_status %}
+  {% if h.check_access('organization_update', {'id': group_dict.id}) %}
+    {% set status = group_dict.approval_status %}
     {% if status == 'pending' %}
       <div class="status_notice status_notice_pending alert-info p-2 mt-3">
         {{ _('Organization is pending approval') }}
