@@ -1,0 +1,6 @@
+{% ckan_extends %}
+
+{% block content_primary_nav %}
+  {{ super() }}
+  {{ h.build_nav_icon('organizationapproval.manage_organizations', _('Manage organizations'), icon='check') }}
+{% endblock %}

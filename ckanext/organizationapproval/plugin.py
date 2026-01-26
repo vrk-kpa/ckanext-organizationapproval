@@ -18,7 +18,6 @@ class OrganizationApprovalPlugin(plugins.SingletonPlugin):
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_ckan_admin_tab(config_, 'organizationapproval.manage_organizations', 'Manage organizations')
         toolkit.add_resource('javascript', 'ckanext-organizationapproval_js')
 
     # IRoutes
