@@ -1,13 +1,23 @@
+from collections.abc import Generator
 from ckan.plugins import toolkit
+from ckan.types import Context, DataDict
 import itertools
+from typing import Optional
 
 
-def organization_generator(context, options=None, page_size: int = None) -> list:
+def organization_generator(context: Context,
+                           options: Optional[DataDict] = None,
+                           page_size: Optional[int] = None) -> Generator[dict]:
     if options is None:
         options = {}
+
     if page_size is None:
-        # Default value for ckan.group_and_organization_list_max is 25
-        page_size = toolkit.config.get('ckan.group_and_organization_list_max', 25)
+        # Default value for ckan.group_and_organization_list_all_fields_max is 25
+        # Default value for ckan.group_and_organization_list_max is 1000
+        if options.get('all_fields', False):
+            page_size = toolkit.config.get('ckan.group_and_organization_list_all_fields_max', 25)
+        else:
+            page_size = toolkit.config.get('ckan.group_and_organization_list_max', 1000)
 
     organization_list = toolkit.get_action('organization_list')
 
@@ -22,8 +32,7 @@ def organization_generator(context, options=None, page_size: int = None) -> list
         if not organizations:
             return
 
-        for organization in organizations:
-            yield organization
+        yield from organizations
 
         # Incomplete page, must be the last one
         if len(organizations) < page_size:
